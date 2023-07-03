@@ -1,54 +1,4 @@
-//conversor Analogico para digital em verilog usando ADS1115 e FPGA
-
-/*Interface I2C usa dois fios: 1- Dados e 2- Relogio*/
-
-/* O pino ADDR da interface I2C é usado para configurar o endereço
-GND - 1001000
-VDD - 1001001
-SDA - 1001010
-SCL - 1001011
-*/
-
-/* ADC tem 4 registradores internos principais
-1. Conversion Register
-2. Config Register
-3. Low Threshold Register
-4. High Threshold Register
-*/
-
-/* // Task 0 Setup Conversion
- - 0 start_i2c()
- - 1 send_byte({address, w})
- - 2 send_byte(select_config_register)
- - 3 send_byte(config_with_channel_upper)
- - 4 send_byte(config_with_channel_lower)
- - 5 stop_i2c()
-
-// Task 1 Check if Ready
- - 0 wait x amount of time
- - 1 start_i2c()
- - 2 send_byte({address, r})
- - 3 read_byte() // reading config upper byte
- - 4 store 1st byte + read_byte() // reading config lower byte
- - 5 stop_i2c()
-
-// Task 2 Switch Back to Conversion Register
- - 0 delay some time
- - 1 start_i2c()
- - 2 write_byte({address, w})
- - 3 write_byte(select_conversion_register)
- - 4 stop_i2c()
-
-// #3 Read Value
- - 0 start_i2c()
- - 1 write_byte({address, r})
- - 2 read_byte() // reading conversion register upper
- - 3 store 1st byte + read_byte() // reading conversion register lower
- - 4 store 2nd read byte
- - 5 stop_i2c()
-*/
-
-// Task 2 Switch Back to Conversion Register
+`default_nettype none
 
 module adc #(
     parameter address = 7'd0
@@ -235,7 +185,7 @@ end
 
 endmodule
 
-
+`default_nettype none
 
 module i2c (
     input clk,
@@ -373,7 +323,181 @@ module i2c (
     end
 endmodule
 
+`default_nettype none
 
+module screen
+#(
+  parameter STARTUP_WAIT = 32'd10000000
+)
+(
+    input clk,
+    output ioSclk,
+    output ioSdin,
+    output ioCs,
+    output ioDc,
+    output ioReset,
+    output [9:0] pixelAddress,
+    input [7:0] pixelData
+);
+
+  localparam STATE_INIT_POWER = 8'd0;
+  localparam STATE_LOAD_INIT_CMD = 8'd1;
+  localparam STATE_SEND = 8'd2;
+  localparam STATE_CHECK_FINISHED_INIT = 8'd3;
+  localparam STATE_LOAD_DATA = 8'd4;
+
+  reg [32:0] counter = 0;
+  reg [2:0] state = 0;
+
+  reg dc = 1;
+  reg sclk = 1;
+  reg sdin = 0;
+  reg reset = 1;
+  reg cs = 0;
+
+  reg [7:0] dataToSend = 0;
+  reg [3:0] bitNumber = 0;  
+  reg [9:0] pixelCounter = 0;
+
+  localparam SETUP_INSTRUCTIONS = 23;
+  reg [(SETUP_INSTRUCTIONS*8)-1:0] startupCommands = {
+    8'hAE,  // display off
+
+    8'h81,  // contast value to 0x7F according to datasheet
+    8'h7F,  
+
+    8'hA6,  // normal screen mode (not inverted)
+
+    8'h20,  // horizontal addressing mode
+    8'h00,  
+
+    8'hC8,  // normal scan direction
+
+    8'h40,  // first line to start scanning from
+
+    8'hA1,  // address 0 is segment 0
+
+    8'hA8,  // mux ratio
+    8'h3f,  // 63 (64 -1)
+
+    8'hD3,  // display offset
+    8'h00,  // no offset
+
+    8'hD5,  // clock divide ratio
+    8'h80,  // set to default ratio/osc frequency
+
+    8'hD9,  // set precharge
+    8'h22,  // switch precharge to 0x22 default
+
+    8'hDB,  // vcom deselect level
+    8'h20,  //  0x20 
+
+    8'h8D,  // charge pump config
+    8'h14,  // enable charge pump
+
+    8'hA4,  // resume RAM content
+
+    8'hAF   // display on
+  };
+  reg [7:0] commandIndex = SETUP_INSTRUCTIONS * 8;
+
+  assign ioSclk = sclk;
+  assign ioSdin = sdin;
+  assign ioDc = dc;
+  assign ioReset = reset;
+  assign ioCs = cs;
+
+  assign pixelAddress = pixelCounter;
+
+  always @(posedge clk) begin
+    case (state)
+      STATE_INIT_POWER: begin
+        counter <= counter + 1;
+        if (counter < STARTUP_WAIT*2)
+          reset <= 1;
+        else if (counter < STARTUP_WAIT * 3)
+          reset <= 0;
+        else if (counter < STARTUP_WAIT * 4)
+          reset <= 1;
+        else begin
+          state <= STATE_LOAD_INIT_CMD;
+          counter <= 32'b0;
+        end
+      end
+      STATE_LOAD_INIT_CMD: begin
+        dc <= 0;
+        dataToSend <= startupCommands[(commandIndex-1)-:8'd8];
+        state <= STATE_SEND;
+        bitNumber <= 3'd7;
+        cs <= 0;
+        commandIndex <= commandIndex - 8'd8;
+      end
+      STATE_SEND: begin
+        if (counter == 32'd0) begin
+          sclk <= 0;
+          sdin <= dataToSend[bitNumber];
+          counter <= 32'd1;
+        end
+        else begin
+          counter <= 32'd0;
+          sclk <= 1;
+          if (bitNumber == 0)
+            state <= STATE_CHECK_FINISHED_INIT;
+          else
+            bitNumber <= bitNumber - 1;
+        end
+      end
+      STATE_CHECK_FINISHED_INIT: begin
+          cs <= 1;
+          if (commandIndex == 0) begin
+            state <= STATE_LOAD_DATA; 
+          end
+          else
+            state <= STATE_LOAD_INIT_CMD; 
+      end
+      STATE_LOAD_DATA: begin
+        pixelCounter <= pixelCounter + 1;
+        cs <= 0;
+        dc <= 1;
+        bitNumber <= 3'd7;
+        state <= STATE_SEND;
+        dataToSend <= pixelData;
+      end
+    endcase
+  end
+endmodule
+
+`default_nettype none
+
+module textEngine (
+    input clk,
+    input [9:0] pixelAddress,
+    output [7:0] pixelData,
+    output [5:0] charAddress,
+    input [7:0] charOutput
+);
+    reg [7:0] fontBuffer [1519:0];
+    initial $readmemh("font.hex", fontBuffer);
+
+    wire [2:0] columnAddress;
+    wire topRow;
+
+    reg [7:0] outputBuffer;
+    wire [7:0] chosenChar;
+
+    always @(posedge clk) begin
+        outputBuffer <= fontBuffer[((chosenChar-8'd32) << 4) + (columnAddress << 1) + (topRow ? 0 : 1)];
+    end
+
+    assign charAddress = {pixelAddress[9:8],pixelAddress[6:3]};
+    assign columnAddress = pixelAddress[2:0];
+    assign topRow = !pixelAddress[7];
+
+    assign chosenChar = (charOutput >= 32 && charOutput <= 126) ? charOutput : 32;
+    assign pixelData = outputBuffer;
+endmodule
+
+`default_nettype none
 
 module toHex(
     input clk,
@@ -440,9 +564,7 @@ module toDec(
     end
 endmodule
 
-
-
-module top
+module ADC
 #(
   parameter STARTUP_WAIT = 32'd10000000
 )
@@ -674,176 +796,4 @@ module top
         end
     end
     
-endmodule
-
-
-module screen
-#(
-  parameter STARTUP_WAIT = 32'd10000000
-)
-(
-    input clk,
-    output ioSclk,
-    output ioSdin,
-    output ioCs,
-    output ioDc,
-    output ioReset,
-    output [9:0] pixelAddress,
-    input [7:0] pixelData
-);
-
-  localparam STATE_INIT_POWER = 8'd0;
-  localparam STATE_LOAD_INIT_CMD = 8'd1;
-  localparam STATE_SEND = 8'd2;
-  localparam STATE_CHECK_FINISHED_INIT = 8'd3;
-  localparam STATE_LOAD_DATA = 8'd4;
-
-  reg [32:0] counter = 0;
-  reg [2:0] state = 0;
-
-  reg dc = 1;
-  reg sclk = 1;
-  reg sdin = 0;
-  reg reset = 1;
-  reg cs = 0;
-
-  reg [7:0] dataToSend = 0;
-  reg [3:0] bitNumber = 0;  
-  reg [9:0] pixelCounter = 0;
-
-  localparam SETUP_INSTRUCTIONS = 23;
-  reg [(SETUP_INSTRUCTIONS*8)-1:0] startupCommands = {
-    8'hAE,  // display off
-
-    8'h81,  // contast value to 0x7F according to datasheet
-    8'h7F,  
-
-    8'hA6,  // normal screen mode (not inverted)
-
-    8'h20,  // horizontal addressing mode
-    8'h00,  
-
-    8'hC8,  // normal scan direction
-
-    8'h40,  // first line to start scanning from
-
-    8'hA1,  // address 0 is segment 0
-
-    8'hA8,  // mux ratio
-    8'h3f,  // 63 (64 -1)
-
-    8'hD3,  // display offset
-    8'h00,  // no offset
-
-    8'hD5,  // clock divide ratio
-    8'h80,  // set to default ratio/osc frequency
-
-    8'hD9,  // set precharge
-    8'h22,  // switch precharge to 0x22 default
-
-    8'hDB,  // vcom deselect level
-    8'h20,  //  0x20 
-
-    8'h8D,  // charge pump config
-    8'h14,  // enable charge pump
-
-    8'hA4,  // resume RAM content
-
-    8'hAF   // display on
-  };
-  reg [7:0] commandIndex = SETUP_INSTRUCTIONS * 8;
-
-  assign ioSclk = sclk;
-  assign ioSdin = sdin;
-  assign ioDc = dc;
-  assign ioReset = reset;
-  assign ioCs = cs;
-
-  assign pixelAddress = pixelCounter;
-
-  always @(posedge clk) begin
-    case (state)
-      STATE_INIT_POWER: begin
-        counter <= counter + 1;
-        if (counter < STARTUP_WAIT*2)
-          reset <= 1;
-        else if (counter < STARTUP_WAIT * 3)
-          reset <= 0;
-        else if (counter < STARTUP_WAIT * 4)
-          reset <= 1;
-        else begin
-          state <= STATE_LOAD_INIT_CMD;
-          counter <= 32'b0;
-        end
-      end
-      STATE_LOAD_INIT_CMD: begin
-        dc <= 0;
-        dataToSend <= startupCommands[(commandIndex-1)-:8'd8];
-        state <= STATE_SEND;
-        bitNumber <= 3'd7;
-        cs <= 0;
-        commandIndex <= commandIndex - 8'd8;
-      end
-      STATE_SEND: begin
-        if (counter == 32'd0) begin
-          sclk <= 0;
-          sdin <= dataToSend[bitNumber];
-          counter <= 32'd1;
-        end
-        else begin
-          counter <= 32'd0;
-          sclk <= 1;
-          if (bitNumber == 0)
-            state <= STATE_CHECK_FINISHED_INIT;
-          else
-            bitNumber <= bitNumber - 1;
-        end
-      end
-      STATE_CHECK_FINISHED_INIT: begin
-          cs <= 1;
-          if (commandIndex == 0) begin
-            state <= STATE_LOAD_DATA; 
-          end
-          else
-            state <= STATE_LOAD_INIT_CMD; 
-      end
-      STATE_LOAD_DATA: begin
-        pixelCounter <= pixelCounter + 1;
-        cs <= 0;
-        dc <= 1;
-        bitNumber <= 3'd7;
-        state <= STATE_SEND;
-        dataToSend <= pixelData;
-      end
-    endcase
-  end
-endmodule
-
-
-module textEngine (
-    input clk,
-    input [9:0] pixelAddress,
-    output [7:0] pixelData,
-    output [5:0] charAddress,
-    input [7:0] charOutput
-);
-    reg [7:0] fontBuffer [1519:0];
-    initial $readmemh("font.hex", fontBuffer);
-
-    wire [2:0] columnAddress;
-    wire topRow;
-
-    reg [7:0] outputBuffer;
-    wire [7:0] chosenChar;
-
-    always @(posedge clk) begin
-        outputBuffer <= fontBuffer[((chosenChar-8'd32) << 4) + (columnAddress << 1) + (topRow ? 0 : 1)];
-    end
-
-    assign charAddress = {pixelAddress[9:8],pixelAddress[6:3]};
-    assign columnAddress = pixelAddress[2:0];
-    assign topRow = !pixelAddress[7];
-
-    assign chosenChar = (charOutput >= 32 && charOutput <= 126) ? charOutput : 32;
-    assign pixelData = outputBuffer;
 endmodule

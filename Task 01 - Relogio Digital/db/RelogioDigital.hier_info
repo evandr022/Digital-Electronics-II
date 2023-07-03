@@ -1,0 +1,409 @@
+|RelogioDigital
+clk => clk.IN3
+rst => _.IN1
+rst => _.IN1
+rst => _.IN1
+rst => _.IN1
+rst => _.IN1
+rst => _.IN1
+f1[0] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[1] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[2] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[3] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[4] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[5] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f1[6] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1.segment
+f2[0] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[1] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[2] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[3] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[4] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[5] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f2[6] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2.segment
+f3[0] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[1] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[2] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[3] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[4] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[5] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f3[6] <= moduleSeveSegmentDisplay:moduleSeveSegmentDispla3.segment
+f4[0] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[1] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[2] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[3] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[4] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[5] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+f4[6] <= moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4.segment
+
+
+|RelogioDigital|divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos
+clk => clkDiv~reg0.CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+clk => count[6].CLK
+clk => count[7].CLK
+clk => count[8].CLK
+clk => count[9].CLK
+clk => count[10].CLK
+clk => count[11].CLK
+clk => count[12].CLK
+clk => count[13].CLK
+clk => count[14].CLK
+clk => count[15].CLK
+clk => count[16].CLK
+clk => count[17].CLK
+clk => count[18].CLK
+clk => count[19].CLK
+clk => count[20].CLK
+clk => count[21].CLK
+clk => count[22].CLK
+clk => count[23].CLK
+clk => count[24].CLK
+clk => count[25].CLK
+clkDiv <= clkDiv~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|divisorDeFrequenciaMinutos:divisorDeFrequenciaMinutos
+clk => ~NO_FANOUT~
+clkDiv <= <GND>
+
+
+|RelogioDigital|divisorDeFrequenciaHoras:divisorDeFrequenciaHoras
+clk => ~NO_FANOUT~
+clkDiv <= <GND>
+
+
+|RelogioDigital|countSecondFirstDigit:countSecondFirstDigitModule
+clk => second[0]~reg0.CLK
+clk => second[1]~reg0.CLK
+clk => second[2]~reg0.CLK
+clk => second[3]~reg0.CLK
+rst => second[0]~reg0.ACLR
+rst => second[1]~reg0.ACLR
+rst => second[2]~reg0.ACLR
+rst => second[3]~reg0.ACLR
+second[0] <= second[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[1] <= second[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[2] <= second[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[3] <= second[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|countSecondSecondDigit:countSecondSecondDigitModule
+clk => second[0]~reg0.CLK
+clk => second[1]~reg0.CLK
+clk => second[2]~reg0.CLK
+clk => second[3]~reg0.CLK
+clk => contandor[0].CLK
+clk => contandor[1].CLK
+clk => contandor[2].CLK
+clk => contandor[3].CLK
+rst => second[0]~reg0.ACLR
+rst => second[1]~reg0.ACLR
+rst => second[2]~reg0.ACLR
+rst => second[3]~reg0.ACLR
+rst => contandor[0].ACLR
+rst => contandor[1].ACLR
+rst => contandor[2].ACLR
+rst => contandor[3].ACLR
+second[0] <= second[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[1] <= second[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[2] <= second[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+second[3] <= second[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|countMinuteFirstDigit:countMinuteFirstDigiteModule
+clk => minute[0]~reg0.CLK
+clk => minute[1]~reg0.CLK
+clk => minute[2]~reg0.CLK
+clk => minute[3]~reg0.CLK
+rst => minute[0]~reg0.ACLR
+rst => minute[1]~reg0.ACLR
+rst => minute[2]~reg0.ACLR
+rst => minute[3]~reg0.ACLR
+minute[0] <= minute[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[1] <= minute[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[2] <= minute[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[3] <= minute[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|countMinuteSecondDigit:countMinuteSecondDigitModule
+clk => minute[0]~reg0.CLK
+clk => minute[1]~reg0.CLK
+clk => minute[2]~reg0.CLK
+clk => minute[3]~reg0.CLK
+clk => contandor[0].CLK
+clk => contandor[1].CLK
+clk => contandor[2].CLK
+clk => contandor[3].CLK
+rst => minute[0]~reg0.ACLR
+rst => minute[1]~reg0.ACLR
+rst => minute[2]~reg0.ACLR
+rst => minute[3]~reg0.ACLR
+rst => contandor[0].ACLR
+rst => contandor[1].ACLR
+rst => contandor[2].ACLR
+rst => contandor[3].ACLR
+minute[0] <= minute[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[1] <= minute[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[2] <= minute[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+minute[3] <= minute[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|countHourFirstDigit:countHourFirstDigitModule
+clk => hour[0]~reg0.CLK
+clk => hour[1]~reg0.CLK
+clk => hour[2]~reg0.CLK
+clk => hour[3]~reg0.CLK
+rst => hour[0]~reg0.ACLR
+rst => hour[1]~reg0.ACLR
+rst => hour[2]~reg0.ACLR
+rst => hour[3]~reg0.ACLR
+hour[0] <= hour[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[1] <= hour[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[2] <= hour[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[3] <= hour[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|countHourSecondDigit:countHourSecondDigitModule
+clk => hour[0]~reg0.CLK
+clk => hour[1]~reg0.CLK
+clk => hour[2]~reg0.CLK
+clk => hour[3]~reg0.CLK
+rst => hour[0]~reg0.ACLR
+rst => hour[1]~reg0.ACLR
+rst => hour[2]~reg0.ACLR
+rst => hour[3]~reg0.ACLR
+hour[0] <= hour[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[1] <= hour[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[2] <= hour[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hour[3] <= hour[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1
+number[0] => number[0].IN1
+number[1] => number[1].IN1
+number[2] => number[2].IN1
+number[3] => number[3].IN1
+number2[0] => number2[0].IN1
+number2[1] => number2[1].IN1
+number2[2] => number2[2].IN1
+number2[3] => number2[3].IN1
+clk => selectionSegment.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => selectionSegment.OUTPUTSELECT
+segment[0] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1|segDisplayControl:segDisplay1
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay1|segDisplayControl:segDisplay2
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2
+number[0] => number[0].IN1
+number[1] => number[1].IN1
+number[2] => number[2].IN1
+number[3] => number[3].IN1
+number2[0] => number2[0].IN1
+number2[1] => number2[1].IN1
+number2[2] => number2[2].IN1
+number2[3] => number2[3].IN1
+clk => selectionSegment.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => selectionSegment.OUTPUTSELECT
+segment[0] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2|segDisplayControl:segDisplay1
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay2|segDisplayControl:segDisplay2
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDispla3
+number[0] => number[0].IN1
+number[1] => number[1].IN1
+number[2] => number[2].IN1
+number[3] => number[3].IN1
+number2[0] => number2[0].IN1
+number2[1] => number2[1].IN1
+number2[2] => number2[2].IN1
+number2[3] => number2[3].IN1
+clk => selectionSegment.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => selectionSegment.OUTPUTSELECT
+segment[0] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDispla3|segDisplayControl:segDisplay1
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDispla3|segDisplayControl:segDisplay2
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4
+number[0] => number[0].IN1
+number[1] => number[1].IN1
+number[2] => number[2].IN1
+number[3] => number[3].IN1
+number2[0] => number2[0].IN1
+number2[1] => number2[1].IN1
+number2[2] => number2[2].IN1
+number2[3] => number2[3].IN1
+clk => selectionSegment.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => counter.OUTPUTSELECT
+reset => selectionSegment.OUTPUTSELECT
+segment[0] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= segment.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4|segDisplayControl:segDisplay1
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RelogioDigital|moduleSeveSegmentDisplay:moduleSeveSegmentDisplay4|segDisplayControl:segDisplay2
+number[0] => Decoder0.IN3
+number[1] => Decoder0.IN2
+number[2] => Decoder0.IN1
+number[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+

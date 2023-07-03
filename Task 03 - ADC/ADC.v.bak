@@ -1,0 +1,216 @@
+
+module I2C_Master_ADS1115_Display (
+  input wire reset,
+  input wire start_conversion,
+  input wire reset_display,
+  inout wire sda,
+  output wire [6:0] seg_display,
+  output reg scl
+);
+
+  // Parâmetros de tempo
+  parameter SCL_LOW_TIME = 5;  // Tempo em unidades de clk
+  parameter SCL_HIGH_TIME = 5; // Tempo em unidades de clk
+  parameter START_SETUP_TIME = 5;
+  parameter STOP_SETUP_TIME = 5;
+
+  // Estados do mestre I2C
+  parameter IDLE = 2'b00;
+  parameter START = 2'b01;
+  parameter WRITE = 2'b10;
+  parameter STOP = 2'b11;
+
+  reg [1:0] state;
+  reg [15:0] data;
+  reg [3:0] bit_counter;
+  reg [7:0] address;
+  reg sda_drive;
+  reg [6:0] display_data;
+  reg [3:0] voltage_bits;
+
+  always @(posedge clk or posedge reset) begin
+    if (reset) begin
+      state <= IDLE;
+      bit_counter <= 0;
+      sda_drive <= 1;
+      data <= 16'b0;
+      display_data <= 7'b0000000;
+      voltage_bits <= 3'b0000;
+    end else begin
+      case (state)
+        IDLE: begin
+          if (start_condition) begin
+            state <= START;
+          end
+        end
+        START: begin
+          scl <= 0;
+          sda <= 0;
+          state <= WRITE;
+          bit_counter <= 0;
+          address <= 7'b1001000;  // Endereço do ADS1115
+          data <= 16'b0000000100000011;  // Configuração padrão (Bits 15:8 = 00000001, Bits 7:0 = 00000011)
+        end
+        WRITE: begin
+          if (bit_counter < 8) begin
+            sda <= address[bit_counter];
+            bit_counter <= bit_counter + 1;
+          end else if (bit_counter < 16) begin
+            sda <= data[bit_counter - 8];
+            bit_counter <= bit_counter + 1;
+          end else if (bit_counter == 16) begin
+            sda_drive <= 1;
+            sda <= 1;
+            state <= STOP;
+            bit_counter <= 0;
+          end
+        end
+        STOP: begin
+          scl <= 1;
+          sda <= 1;
+          state <= IDLE;
+          if (start_conversion) begin
+            voltage_bits <= data[15:12];  // Atualiza os bits de tensão com base na leitura do ADS1115
+          end
+          if (reset_display) begin
+            display_data <= 7'b0000000;  // Reinicia o display para 000
+          end else begin
+            case (voltage_bits)
+              3'b0000: display_data <= 7'b0000000;  // 0V
+              3'b0001: display_data <= 7'b0000001;  // 0.5V
+              3'b0010: display_data <= 7'b0000010;  // 1V
+              3'b0011: display_data <= 7'b0000011;  // 1.5V
+              3'b0100: display_data <= 7'b0000100;  // 2V
+              3'b0101: display_data <= 7'b0000101;  // 2.5V
+              3'b0110: display_data <= 7'b0000110;  // 3V
+              3'b0111: display_data <= 7'b0000111;  // 3.5V
+              3'b1000: display_data <= 7'b0001000;  //4.0V
+              3'b1001: display_data <= 7'b0001001;  //4.5V
+              3'b1010: display_data <= 7'b0001010;  //5.0V
+              default: display_data <= 7'b0000000;  // Valor padrão para outras faixas de tensão não especificadas
+            endcase
+          end
+        end
+      endcase
+    end
+  end
+  // Controlador do mestre I2C
+  always @(posedge clk) begin
+    case (state)
+      IDLE: begin
+        sda_drive <= 1;
+      end
+      START: begin
+        sda_drive <= 0;
+      end
+      WRITE: begin
+        sda_drive <= 0;
+      end
+      STOP: begin
+        sda_drive <= 1;
+      end
+    endcase
+  end
+
+  // Gerador de sinal SCL
+  always @(posedge clk) begin
+    case (state)
+      START, WRITE: begin
+        scl <= 0;
+        #(SCL_LOW_TIME);
+        scl <= 1;
+        #(SCL_HIGH_TIME);
+      end
+      STOP: begin
+        scl <= 0;
+        #(SCL_LOW_TIME);
+        scl <= 1;
+        #(SCL_HIGH_TIME);
+      end
+      default: begin
+        scl <= 1;
+      end
+    endcase
+  end
+
+endmodule
+
+module seven_seg_display (
+    input wire [3:0] data,
+    output reg [6:0] seg
+);
+
+    always @(*) begin
+        case (data)
+            4'b0000: seg = 7'b1000000;  // 0
+            4'b0001: seg = 7'b1111001;  // 1
+            4'b0010: seg = 7'b0100100;  // 2
+            4'b0011: seg = 7'b0110000;  // 3
+            4'b0100: seg = 7'b0011001;  // 4
+            4'b0101: seg = 7'b0010010;  // 5
+            4'b0110: seg = 7'b0000010;  // 6
+            4'b0111: seg = 7'b1111000;  // 7
+            4'b1000: seg = 7'b0000000;  // 8
+            4'b1001: seg = 7'b0010000;  // 9
+            4'b1010: seg = 7'b0001000;  // 10
+            4'b1011: seg = 7'b0000011;  // 11
+            4'b1100: seg = 7'b1000110;  // 12
+            4'b1101: seg = 7'b0100001;  // 13
+            4'b1110: seg = 7'b0000110;  // 14
+            4'b1111: seg = 7'b0001110;  // 15
+        endcase
+    end
+endmodule
+
+module ADC (
+    input  wire clk,
+    input  wire reset,
+    input  wire start,
+    inout  wire sda,
+    output [6:0] display_0,
+    output [6:0] display_1,
+    output [6:0] display_2,
+    output [6:0] display_3,
+    output wire scl
+);
+    wire [15:0] adc_data;  // Added this line
+    wire start_condition = start && !reset;
+    wire [3:0] binary_data;
+
+    // Modified this instantiation to include adc_data
+    I2C_Master_ADS1115_Display i2c_master (
+        .clk(clk),
+        .reset(reset),
+        .start_conversion(start),
+        .reset_display(1'b0),
+        .sda(sda),
+        .seg_display(adc_data),  // Connecting adc_data here
+        .scl(scl),
+        .start_condition(start_condition)
+    );
+
+    assign binary_data[0] = adc_data[3:0];  // Most Significant 4 bits
+    assign binary_data[1] = adc_data[7:4];  
+    assign binary_data[2] = adc_data[11:8];
+    assign binary_data[3] = adc_data[15:12];  // Least Significant 4 bits
+
+    seven_seg_display display_0_inst (
+        .data(binary_data[0]),
+        .seg(display_0)
+    );
+
+    seven_seg_display display_1_inst (
+        .data(binary_data[1]),
+        .seg(display_1)
+    );
+
+    seven_seg_display display_2_inst (
+        .data(binary_data[2]),
+        .seg(display_2)
+    );
+
+    seven_seg_display display_3_inst (
+        .data(binary_data[3]),
+        .seg(display_3)
+    );
+endmodule

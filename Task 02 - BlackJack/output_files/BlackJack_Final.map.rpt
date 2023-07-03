@@ -1,0 +1,659 @@
+Analysis & Synthesis report for BlackJack_Final
+Fri Jun 23 04:38:18 2023
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|estado
+  9. State Machine - |BlackJack_Final|memoria:rom|estado
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Port Connectivity Checks: "DisplayDeSeteSegmentosDecodificador:d2"
+ 15. Port Connectivity Checks: "memoria:rom"
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
+ 18. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Jun 23 04:38:18 2023           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; BlackJack_Final                                 ;
+; Top-level Entity Name              ; BlackJack_Final                                 ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 1,007                                           ;
+;     Total combinational functions  ; 994                                             ;
+;     Dedicated logic registers      ; 317                                             ;
+; Total registers                    ; 317                                             ;
+; Total pins                         ; 35                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; BlackJack_Final    ; BlackJack_Final    ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 5      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                   ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                     ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; BlackJack_Final.v                ; yes             ; User Verilog HDL File  ; C:/Users/evand/OneDrive/Documentos/Evandro/GitClone/Digital-Electronics-II/Task 02 - BlackJack/BlackJack_Final.v ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 1,007       ;
+;                                             ;             ;
+; Total combinational functions               ; 994         ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 800         ;
+;     -- 3 input functions                    ; 69          ;
+;     -- <=2 input functions                  ; 125         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 934         ;
+;     -- arithmetic mode                      ; 60          ;
+;                                             ;             ;
+; Total registers                             ; 317         ;
+;     -- Dedicated logic registers            ; 317         ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 35          ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 317         ;
+; Total fan-out                               ; 4663        ;
+; Average fan-out                             ; 3.38        ;
++---------------------------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                ;
++--------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                      ; Library Name ;
++--------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; |BlackJack_Final                                             ; 994 (0)           ; 317 (0)      ; 0           ; 0            ; 0       ; 0         ; 35   ; 0            ; |BlackJack_Final                                                         ; work         ;
+;    |DisplayDeSeteSegmentosDecodificador:d1|                  ; 51 (51)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|DisplayDeSeteSegmentosDecodificador:d1                  ; work         ;
+;    |DisplayDeSeteSegmentosDecodificador:d2|                  ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|DisplayDeSeteSegmentosDecodificador:d2                  ; work         ;
+;    |blackJackestadoMachineModule:blackJackestadoMachineInst| ; 92 (92)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst ; work         ;
+;    |debounce:debounceInst2|                                  ; 33 (1)            ; 32 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2                                  ; work         ;
+;       |FliFlopD:d0|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2|FliFlopD:d0                      ; work         ;
+;       |FliFlopD:d1|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2|FliFlopD:d1                      ; work         ;
+;       |FliFlopD:d2|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2|FliFlopD:d2                      ; work         ;
+;       |clock_enable:u1|                                      ; 31 (31)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2|clock_enable:u1                  ; work         ;
+;       |geradorDePulso:pg|                                    ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst2|geradorDePulso:pg                ; work         ;
+;    |debounce:debounceInst3|                                  ; 2 (1)             ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst3                                  ; work         ;
+;       |FliFlopD:d0|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst3|FliFlopD:d0                      ; work         ;
+;       |FliFlopD:d1|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst3|FliFlopD:d1                      ; work         ;
+;       |FliFlopD:d2|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst3|FliFlopD:d2                      ; work         ;
+;       |geradorDePulso:pg|                                    ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst3|geradorDePulso:pg                ; work         ;
+;    |debounce:debounceInst|                                   ; 12 (1)            ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst                                   ; work         ;
+;       |FliFlopD:d0|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst|FliFlopD:d0                       ; work         ;
+;       |FliFlopD:d1|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst|FliFlopD:d1                       ; work         ;
+;       |FliFlopD:d2|                                          ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst|FliFlopD:d2                       ; work         ;
+;       |clock_enable:u1|                                      ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst|clock_enable:u1                   ; work         ;
+;       |geradorDePulso:pg|                                    ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|debounce:debounceInst|geradorDePulso:pg                 ; work         ;
+;    |memoria:rom|                                             ; 790 (790)         ; 235 (235)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |BlackJack_Final|memoria:rom                                             ; work         ;
++--------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|estado                                                                                                                                                                                                                                                                                                  ;
++------------------------------------+------------------------------------+----------------------------------+---------------------+-----------------------------+---------------------------+-------------------+------------------------------------+-------------------------------+----------------------+----------------------+------------------+---------------------+---------------------+
+; Name                               ; estado.estadoDaSegundaCartaJogador ; estado.estadoDaSegundaCartaBanca ; estado.estadoEmpate ; estado.estadoDaCartaJogador ; estado.estadoDaCartaBanca ; estado.turnoBanca ; estado.estadoSomaDasCartasDoDealer ; estado.estadoSomaCartaJogador ; estado.estadoDerrota ; estado.estadoVitoria ; estado.estadoFim ; estado.turnoJogador ; estado.estadoEspera ;
++------------------------------------+------------------------------------+----------------------------------+---------------------+-----------------------------+---------------------------+-------------------+------------------------------------+-------------------------------+----------------------+----------------------+------------------+---------------------+---------------------+
+; estado.estadoEspera                ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 0                   ;
+; estado.turnoJogador                ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 1                   ; 1                   ;
+; estado.estadoFim                   ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 1                ; 0                   ; 1                   ;
+; estado.estadoVitoria               ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 1                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoDerrota               ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 1                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoSomaCartaJogador      ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 1                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoSomaDasCartasDoDealer ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 1                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.turnoBanca                  ; 0                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 1                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoDaCartaBanca          ; 0                                  ; 0                                ; 0                   ; 0                           ; 1                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoDaCartaJogador        ; 0                                  ; 0                                ; 0                   ; 1                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoEmpate                ; 0                                  ; 0                                ; 1                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoDaSegundaCartaBanca   ; 0                                  ; 1                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
+; estado.estadoDaSegundaCartaJogador ; 1                                  ; 0                                ; 0                   ; 0                           ; 0                         ; 0                 ; 0                                  ; 0                             ; 0                    ; 0                    ; 0                ; 0                   ; 1                   ;
++------------------------------------+------------------------------------+----------------------------------+---------------------+-----------------------------+---------------------------+-------------------+------------------------------------+-------------------------------+----------------------+----------------------+------------------+---------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------+
+; State Machine - |BlackJack_Final|memoria:rom|estado          ;
++----------------+--------------+----------------+-------------+
+; Name           ; estado.Epera ; estado.ESCRITA ; estado.READ ;
++----------------+--------------+----------------+-------------+
+; estado.Epera   ; 0            ; 0              ; 0           ;
+; estado.READ    ; 1            ; 0              ; 1           ;
+; estado.ESCRITA ; 1            ; 1              ; 0           ;
++----------------+--------------+----------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                ;
++------------------------------------------------------------------+----------------------------------------------------------------+
+; Register name                                                    ; Reason for Removal                                             ;
++------------------------------------------------------------------+----------------------------------------------------------------+
+; debounce:debounceInst3|clock_enable:u1|counter[14]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[14] ;
+; debounce:debounceInst|clock_enable:u1|counter[14]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[14] ;
+; debounce:debounceInst3|clock_enable:u1|counter[13]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[13] ;
+; debounce:debounceInst|clock_enable:u1|counter[13]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[13] ;
+; debounce:debounceInst3|clock_enable:u1|counter[12]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[12] ;
+; debounce:debounceInst|clock_enable:u1|counter[12]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[12] ;
+; debounce:debounceInst3|clock_enable:u1|counter[11]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[11] ;
+; debounce:debounceInst|clock_enable:u1|counter[11]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[11] ;
+; debounce:debounceInst3|clock_enable:u1|counter[10]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[10] ;
+; debounce:debounceInst|clock_enable:u1|counter[10]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[10] ;
+; debounce:debounceInst3|clock_enable:u1|counter[9]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[9]  ;
+; debounce:debounceInst|clock_enable:u1|counter[9]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[9]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[8]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[8]  ;
+; debounce:debounceInst|clock_enable:u1|counter[8]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[8]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[7]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[7]  ;
+; debounce:debounceInst|clock_enable:u1|counter[7]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[7]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[6]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[6]  ;
+; debounce:debounceInst|clock_enable:u1|counter[6]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[6]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[5]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[5]  ;
+; debounce:debounceInst|clock_enable:u1|counter[5]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[5]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[4]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[4]  ;
+; debounce:debounceInst|clock_enable:u1|counter[4]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[4]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[3]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[3]  ;
+; debounce:debounceInst|clock_enable:u1|counter[3]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[3]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[2]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[2]  ;
+; debounce:debounceInst|clock_enable:u1|counter[2]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[2]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[1]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[1]  ;
+; debounce:debounceInst|clock_enable:u1|counter[1]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[1]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[0]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[0]  ;
+; debounce:debounceInst|clock_enable:u1|counter[0]                 ; Merged with debounce:debounceInst2|clock_enable:u1|counter[0]  ;
+; debounce:debounceInst3|clock_enable:u1|counter[15]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[15] ;
+; debounce:debounceInst|clock_enable:u1|counter[15]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[15] ;
+; debounce:debounceInst3|clock_enable:u1|counter[16]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[16] ;
+; debounce:debounceInst|clock_enable:u1|counter[16]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[16] ;
+; debounce:debounceInst3|clock_enable:u1|counter[17]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[17] ;
+; debounce:debounceInst|clock_enable:u1|counter[17]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[17] ;
+; debounce:debounceInst3|clock_enable:u1|counter[18]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[18] ;
+; debounce:debounceInst|clock_enable:u1|counter[18]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[18] ;
+; debounce:debounceInst3|clock_enable:u1|counter[19]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[19] ;
+; debounce:debounceInst|clock_enable:u1|counter[19]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[19] ;
+; debounce:debounceInst3|clock_enable:u1|counter[20]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[20] ;
+; debounce:debounceInst|clock_enable:u1|counter[20]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[20] ;
+; debounce:debounceInst3|clock_enable:u1|counter[21]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[21] ;
+; debounce:debounceInst|clock_enable:u1|counter[21]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[21] ;
+; debounce:debounceInst3|clock_enable:u1|counter[22]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[22] ;
+; debounce:debounceInst|clock_enable:u1|counter[22]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[22] ;
+; debounce:debounceInst3|clock_enable:u1|counter[23]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[23] ;
+; debounce:debounceInst|clock_enable:u1|counter[23]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[23] ;
+; debounce:debounceInst3|clock_enable:u1|counter[24]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[24] ;
+; debounce:debounceInst|clock_enable:u1|counter[24]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[24] ;
+; debounce:debounceInst3|clock_enable:u1|counter[25]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[25] ;
+; debounce:debounceInst|clock_enable:u1|counter[25]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[25] ;
+; debounce:debounceInst3|clock_enable:u1|counter[26]               ; Merged with debounce:debounceInst2|clock_enable:u1|counter[26] ;
+; debounce:debounceInst|clock_enable:u1|counter[26]                ; Merged with debounce:debounceInst2|clock_enable:u1|counter[26] ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~2 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~3 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~4 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~5 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~6 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~7 ; Lost fanout                                                    ;
+; blackJackestadoMachineModule:blackJackestadoMachineInst|estado~8 ; Lost fanout                                                    ;
+; Total Number of Removed Registers = 61                           ;                                                                ;
++------------------------------------------------------------------+----------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 317   ;
+; Number of registers using Synchronous Clear  ; 52    ;
+; Number of registers using Synchronous Load   ; 4     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 264   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; memoria:rom|memoria[37][3]              ; 3       ;
+; memoria:rom|memoria[38][3]              ; 3       ;
+; memoria:rom|memoria[36][3]              ; 3       ;
+; memoria:rom|memoria[34][3]              ; 3       ;
+; memoria:rom|memoria[33][3]              ; 4       ;
+; memoria:rom|memoria[35][3]              ; 3       ;
+; memoria:rom|memoria[46][3]              ; 4       ;
+; memoria:rom|memoria[47][3]              ; 3       ;
+; memoria:rom|memoria[21][3]              ; 3       ;
+; memoria:rom|memoria[25][3]              ; 3       ;
+; memoria:rom|memoria[22][3]              ; 3       ;
+; memoria:rom|memoria[24][3]              ; 3       ;
+; memoria:rom|memoria[20][3]              ; 4       ;
+; memoria:rom|memoria[23][3]              ; 3       ;
+; memoria:rom|memoria[10][3]              ; 3       ;
+; memoria:rom|memoria[9][3]               ; 3       ;
+; memoria:rom|memoria[8][3]               ; 3       ;
+; memoria:rom|memoria[12][3]              ; 3       ;
+; memoria:rom|memoria[7][3]               ; 4       ;
+; memoria:rom|memoria[11][3]              ; 3       ;
+; memoria:rom|memoria[50][3]              ; 3       ;
+; memoria:rom|memoria[49][3]              ; 3       ;
+; memoria:rom|memoria[48][3]              ; 3       ;
+; memoria:rom|memoria[51][3]              ; 3       ;
+; memoria:rom|memoria[17][2]              ; 3       ;
+; memoria:rom|memoria[18][2]              ; 3       ;
+; memoria:rom|memoria[16][2]              ; 4       ;
+; memoria:rom|memoria[19][2]              ; 3       ;
+; memoria:rom|memoria[30][2]              ; 3       ;
+; memoria:rom|memoria[29][2]              ; 4       ;
+; memoria:rom|memoria[31][2]              ; 3       ;
+; memoria:rom|memoria[45][2]              ; 3       ;
+; memoria:rom|memoria[42][2]              ; 4       ;
+; memoria:rom|memoria[32][2]              ; 3       ;
+; memoria:rom|memoria[44][2]              ; 3       ;
+; memoria:rom|memoria[43][2]              ; 3       ;
+; memoria:rom|memoria[6][2]               ; 3       ;
+; memoria:rom|memoria[5][2]               ; 3       ;
+; memoria:rom|memoria[4][2]               ; 3       ;
+; memoria:rom|memoria[3][2]               ; 4       ;
+; memoria:rom|memoria[38][1]              ; 3       ;
+; memoria:rom|memoria[37][1]              ; 3       ;
+; memoria:rom|memoria[36][1]              ; 3       ;
+; memoria:rom|memoria[41][1]              ; 3       ;
+; memoria:rom|memoria[40][1]              ; 4       ;
+; memoria:rom|memoria[32][1]              ; 3       ;
+; memoria:rom|memoria[35][1]              ; 3       ;
+; memoria:rom|memoria[45][1]              ; 3       ;
+; memoria:rom|memoria[44][1]              ; 3       ;
+; memoria:rom|memoria[22][1]              ; 3       ;
+; memoria:rom|memoria[18][1]              ; 3       ;
+; memoria:rom|memoria[25][1]              ; 3       ;
+; memoria:rom|memoria[24][1]              ; 3       ;
+; memoria:rom|memoria[28][1]              ; 3       ;
+; memoria:rom|memoria[27][1]              ; 4       ;
+; memoria:rom|memoria[23][1]              ; 3       ;
+; memoria:rom|memoria[19][1]              ; 3       ;
+; memoria:rom|memoria[31][1]              ; 3       ;
+; memoria:rom|memoria[10][1]              ; 3       ;
+; memoria:rom|memoria[9][1]               ; 3       ;
+; memoria:rom|memoria[11][1]              ; 3       ;
+; memoria:rom|memoria[5][1]               ; 3       ;
+; memoria:rom|memoria[6][1]               ; 3       ;
+; memoria:rom|memoria[2][1]               ; 3       ;
+; memoria:rom|memoria[1][1]               ; 4       ;
+; memoria:rom|memoria[14][1]              ; 4       ;
+; memoria:rom|memoria[12][1]              ; 3       ;
+; memoria:rom|memoria[15][1]              ; 3       ;
+; memoria:rom|memoria[50][1]              ; 3       ;
+; memoria:rom|memoria[49][1]              ; 3       ;
+; memoria:rom|memoria[48][1]              ; 3       ;
+; memoria:rom|memoria[51][1]              ; 3       ;
+; memoria:rom|memoria[26][0]              ; 4       ;
+; memoria:rom|memoria[21][0]              ; 3       ;
+; memoria:rom|memoria[17][0]              ; 3       ;
+; memoria:rom|memoria[19][0]              ; 3       ;
+; memoria:rom|memoria[30][0]              ; 3       ;
+; memoria:rom|memoria[28][0]              ; 3       ;
+; memoria:rom|memoria[34][0]              ; 3       ;
+; memoria:rom|memoria[41][0]              ; 3       ;
+; memoria:rom|memoria[45][0]              ; 3       ;
+; memoria:rom|memoria[32][0]              ; 3       ;
+; memoria:rom|memoria[43][0]              ; 3       ;
+; memoria:rom|memoria[39][0]              ; 4       ;
+; memoria:rom|memoria[47][0]              ; 3       ;
+; memoria:rom|memoria[13][0]              ; 4       ;
+; memoria:rom|memoria[6][0]               ; 3       ;
+; memoria:rom|memoria[2][0]               ; 3       ;
+; memoria:rom|memoria[8][0]               ; 3       ;
+; memoria:rom|memoria[4][0]               ; 3       ;
+; memoria:rom|memoria[0][0]               ; 4       ;
+; memoria:rom|memoria[15][0]              ; 3       ;
+; memoria:rom|troca[3]                    ; 86      ;
+; memoria:rom|troca[0]                    ; 40      ;
+; memoria:rom|troca[1]                    ; 40      ;
+; Total number of inverted registers = 95 ;         ;
++-----------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[51][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[50][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[49][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[48][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[47][2]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[46][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[44][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[43][1]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[42][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[41][3]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[40][2]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[39][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[38][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[37][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[36][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[35][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[34][1]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[33][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[31][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[30][1]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[29][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[28][3]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[27][3]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[26][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[25][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[24][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[23][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[22][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[21][2]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[20][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[18][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[17][1]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[16][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[15][2]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[14][2]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[13][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[12][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[11][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[10][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[9][2]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[8][2]                                                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[7][0]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[5][0]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[4][1]                                                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[3][3]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[2][2]                                                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[1][2]                                                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[0][1]                                                           ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|SomaDasCartasDoDealerNvs[3] ;
+; 52:1               ; 4 bits    ; 136 LEs       ; 136 LEs              ; 0 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria_enderecoDeEmbaralhamento[0]                                     ;
+; 52:1               ; 4 bits    ; 136 LEs       ; 136 LEs              ; 0 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|data[0]                                                                 ;
+; 52:1               ; 4 bits    ; 136 LEs       ; 136 LEs              ; 0 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria_Embaralhamento[3]                                               ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 7 LEs                ; 28 LEs                 ; Yes        ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|SomaDasCartasDoJogador[4]   ;
+; 12:1               ; 7 bits    ; 56 LEs        ; 7 LEs                ; 49 LEs                 ; Yes        ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|SomaDasCartasDoDealer[4]    ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 6 LEs                ; 36 LEs                 ; Yes        ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|endereco[0]                 ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[51][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[50][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[49][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[48][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[47][3]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[45][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[44][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[43][2]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[41][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[38][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[37][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[36][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[35][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[34][3]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[32][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[31][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[30][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[28][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[25][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[24][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[23][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[22][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[21][0]                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[19][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[18][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[17][0]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[15][1]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[12][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[11][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[10][3]                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[9][1]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[8][3]                                                           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[6][1]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[5][2]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[4][2]                                                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BlackJack_Final|memoria:rom|memoria[2][0]                                                           ;
+; 18:1               ; 5 bits    ; 60 LEs        ; 35 LEs               ; 25 LEs                 ; No         ; |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|estado                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "DisplayDeSeteSegmentosDecodificador:d2"                                                                                                   ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                                                                          ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+; SegundoDigito ; Output ; Warning  ; Output or bidir port (7 bits) is wider than the port expression (1 bits) it drives; bit(s) "SegundoDigito[6..1]" have no fanouts ;
+; SegundoDigito ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                              ;
++---------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "memoria:rom"                                                                                                             ;
++----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port                 ; Type   ; Severity ; Details                                                                                                  ;
++----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; embaralhamentoPronto ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Fri Jun 23 04:38:14 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off BlackJack_Final -c BlackJack_Final
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Warning (10275): Verilog HDL Module Instantiation warning at BlackJack_Final.v(45): ignored dangling comma in List of Port Connections
+Warning (10275): Verilog HDL Module Instantiation warning at BlackJack_Final.v(65): ignored dangling comma in List of Port Connections
+Warning (10275): Verilog HDL Module Instantiation warning at BlackJack_Final.v(71): ignored dangling comma in List of Port Connections
+Info (12021): Found 8 design units, including 8 entities, in source file blackjack_final.v
+    Info (12023): Found entity 1: BlackJack_Final
+    Info (12023): Found entity 2: memoria
+    Info (12023): Found entity 3: debounce
+    Info (12023): Found entity 4: clock_enable
+    Info (12023): Found entity 5: FliFlopD
+    Info (12023): Found entity 6: geradorDePulso
+    Info (12023): Found entity 7: blackJackestadoMachineModule
+    Info (12023): Found entity 8: DisplayDeSeteSegmentosDecodificador
+Warning (10236): Verilog HDL Implicit Net warning at BlackJack_Final.v(70): created implicit net for "TerceiroDigito"
+Info (12127): Elaborating entity "BlackJack_Final" for the top level hierarchy
+Warning (10034): Output port "TerceiroDigitoigito" at BlackJack_Final.v(11) has no driver
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounceInst"
+Info (12128): Elaborating entity "clock_enable" for hierarchy "debounce:debounceInst|clock_enable:u1"
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(197): truncated value with size 32 to match size of target (27)
+Info (12128): Elaborating entity "FliFlopD" for hierarchy "debounce:debounceInst|FliFlopD:d0"
+Info (12128): Elaborating entity "geradorDePulso" for hierarchy "debounce:debounceInst|geradorDePulso:pg"
+Info (12128): Elaborating entity "memoria" for hierarchy "memoria:rom"
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(148): truncated value with size 32 to match size of target (6)
+Info (12128): Elaborating entity "blackJackestadoMachineModule" for hierarchy "blackJackestadoMachineModule:blackJackestadoMachineInst"
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(319): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(324): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(329): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(334): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(343): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at BlackJack_Final.v(353): truncated value with size 32 to match size of target (6)
+Info (12128): Elaborating entity "DisplayDeSeteSegmentosDecodificador" for hierarchy "DisplayDeSeteSegmentosDecodificador:d1"
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "PrimeiroDigito[1]" is stuck at GND
+    Warning (13410): Pin "QuartoDigito[1]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[0]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[1]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[2]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[3]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[4]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[5]" is stuck at GND
+    Warning (13410): Pin "TerceiroDigitoigito[6]" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/evand/OneDrive/Documentos/Evandro/GitClone/Digital-Electronics-II/Task 02 - BlackJack/output_files/BlackJack_Final.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1043 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 31 output pins
+    Info (21061): Implemented 1008 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Peak virtual memory: 4587 megabytes
+    Info: Processing ended: Fri Jun 23 04:38:18 2023
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/evand/OneDrive/Documentos/Evandro/GitClone/Digital-Electronics-II/Task 02 - BlackJack/output_files/BlackJack_Final.map.smsg.
+
+

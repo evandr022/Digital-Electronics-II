@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Fri Jun 23 04:38:18 2023
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : BlackJack_Final
+Top-level Entity Name : BlackJack_Final
+Family : Cyclone IV E
+Total logic elements : 1,007
+    Total combinational functions : 994
+    Dedicated logic registers : 317
+Total registers : 317
+Total pins : 35
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

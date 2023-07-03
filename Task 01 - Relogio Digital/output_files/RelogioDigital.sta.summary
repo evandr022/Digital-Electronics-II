@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -3.288
+TNS   : -51.107
+
+Type  : Slow 1200mV 85C Model Setup 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -1.111
+TNS   : -6.709
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.022
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : 0.404
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -37.695
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -1.285
+TNS   : -16.705
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -2.922
+TNS   : -43.356
+
+Type  : Slow 1200mV 0C Model Setup 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -0.920
+TNS   : -5.128
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.049
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -37.695
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -1.285
+TNS   : -16.705
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -1.069
+TNS   : -11.565
+
+Type  : Fast 1200mV 0C Model Setup 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -0.025
+TNS   : -0.080
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : -0.162
+TNS   : -0.162
+
+Type  : Fast 1200mV 0C Model Hold 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -31.821
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'divisorDeFrequenciaSegundos:divisorDeFrequenciaSegundos|clkDiv'
+Slack : -1.000
+TNS   : -13.000
+
+------------------------------------------------------------

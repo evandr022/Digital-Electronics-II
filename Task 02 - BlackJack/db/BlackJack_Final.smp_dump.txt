@@ -1,0 +1,22 @@
+
+State Machine - |BlackJack_Final|blackJackestadoMachineModule:blackJackestadoMachineInst|estado
+Name estado.estadoDaSegundaCartaJogador estado.estadoDaSegundaCartaBanca estado.estadoEmpate estado.estadoDaCartaJogador estado.estadoDaCartaBanca estado.turnoBanca estado.estadoSomaDasCartasDoDealer estado.estadoSomaCartaJogador estado.estadoDerrota estado.estadoVitoria estado.estadoFim estado.turnoJogador estado.estadoEspera 
+estado.estadoEspera 0 0 0 0 0 0 0 0 0 0 0 0 0 
+estado.turnoJogador 0 0 0 0 0 0 0 0 0 0 0 1 1 
+estado.estadoFim 0 0 0 0 0 0 0 0 0 0 1 0 1 
+estado.estadoVitoria 0 0 0 0 0 0 0 0 0 1 0 0 1 
+estado.estadoDerrota 0 0 0 0 0 0 0 0 1 0 0 0 1 
+estado.estadoSomaCartaJogador 0 0 0 0 0 0 0 1 0 0 0 0 1 
+estado.estadoSomaDasCartasDoDealer 0 0 0 0 0 0 1 0 0 0 0 0 1 
+estado.turnoBanca 0 0 0 0 0 1 0 0 0 0 0 0 1 
+estado.estadoDaCartaBanca 0 0 0 0 1 0 0 0 0 0 0 0 1 
+estado.estadoDaCartaJogador 0 0 0 1 0 0 0 0 0 0 0 0 1 
+estado.estadoEmpate 0 0 1 0 0 0 0 0 0 0 0 0 1 
+estado.estadoDaSegundaCartaBanca 0 1 0 0 0 0 0 0 0 0 0 0 1 
+estado.estadoDaSegundaCartaJogador 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |BlackJack_Final|memoria:rom|estado
+Name estado.Epera estado.ESCRITA estado.READ 
+estado.Epera 0 0 0 
+estado.READ 1 0 1 
+estado.ESCRITA 1 1 0 
